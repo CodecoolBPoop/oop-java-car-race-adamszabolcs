@@ -15,7 +15,7 @@ public class Race {
 
     public static final int racerNumber = 10;
 
-    public boolean brokenTruck;
+    public boolean brokenTruck = false;
 
     public Race() {
     }
@@ -24,7 +24,7 @@ public class Race {
         for (int i = 0; i < racerNumber; i++) {
             Car car = new Car();
             Truck truck = new Truck();
-            Motorcycle motor = new Motorcycle("Motorcycle " + i);
+            Motorcycle motor = new Motorcycle("Motorcycle " + (i+1));
             cars.add(car);
             trucks.add(truck);
             motorcycles.add(motor);
@@ -36,13 +36,13 @@ public class Race {
         for (int i = 0; i < fullRace; i++) {
             Weather.setRaining();
             for (Car car: cars) {
-                car.moveForAnHour();
+                System.out.println(car.getName());
             }
             for (Truck truck : trucks) {
-                truck.moveForAnHour();
+                System.out.println(truck.getName());
             }
             for (Motorcycle motor : motorcycles) {
-                motor.moveForAnHour();
+                System.out.println(motor.getName());
             }
         }
         printRaceResults();
@@ -67,17 +67,19 @@ public class Race {
         }
         System.out.println("Motor winner " + winnerName + "made " + maxDistance + "km distance on the race.");
         maxDistance = 0;
+/*
         for (Truck truck : trucks) {
             if (truck.getDistanceTraveled() > maxDistance) {
                 maxDistance = truck.getDistanceTraveled();
                 winnerName = truck.getName();
             }
         }
+*/
         System.out.println("Truck winner " + winnerName + "made " + maxDistance + "km distance on the race.");
     }
 
-    public boolean isThereABrokenTruck() {
-        return brokenTruck;
+    public static boolean isThereABrokenTruck() {
+        return false;
     }
 
     public static void main(String[] args) {
