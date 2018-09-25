@@ -1,35 +1,35 @@
 package com.codecool;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Race {
 
-    public static final String[] carNames = {"Eon", "Crest", "Patron", "Blast", "Zeal", "Temper", "Crux", "Dynamics",
-                                            "Flow", "Ivory", "Fragment", "Tradition", "Viper", "Universe", "Escape",
-                                            "Magic", "Flux", "Blizzard"};
+    private List<Car> cars = new ArrayList<>();
+
     public static final int racerNumber = 10;
 
-    private static String randomName = "";
-
-    public static final List<String> racingCarNames = new ArrayList<String>();
-
     public Race() {
-
+        createVehicles();
     }
 
     void createVehicles() {
         for (int i = 0; i < racerNumber; i++) {
-            randomName = "";
-            for (int j = 0; j < 2; j++) {
-                Random carNameIndex = new Random();
-                randomName += carNames[carNameIndex.nextInt(carNames.length-1)];
-            }
-            racingCarNames.add(randomName);
+            Car car = new Car();
+            cars.add(car);
         }
-
+        for (int i = 0; i < 2; i++) {
+            System.out.println(Weather.checkIfRaining());
+            for (Car car: cars) {
+                System.out.println(car.getName());
+                System.out.println(car.getNormalSpeed());
+                car.makeDistance(car.getNormalSpeed());
+                System.out.println(car.getDistanceTraveled());
+            }
+        }
     }
 
     void simulateRace() {
-        moveForAnHour();
     }
 
     void printRaceResults() {
