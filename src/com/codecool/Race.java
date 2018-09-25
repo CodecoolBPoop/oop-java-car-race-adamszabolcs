@@ -23,10 +23,20 @@ public class Race {
             for (Car car: cars) {
                 System.out.println(car.getName());
                 System.out.println(car.getNormalSpeed());
-                car.makeDistance(car.getNormalSpeed());
+                car.addDistanceTraveled();
                 System.out.println(car.getDistanceTraveled());
             }
         }
+        int maxDistance = 0;
+        String winnerName = "";
+        for (Car car : cars) {
+            if (car.getDistanceTraveled() > maxDistance) {
+                maxDistance = car.getDistanceTraveled();
+                winnerName = car.getName();
+            }
+        }
+        System.out.println(maxDistance);
+        System.out.println(winnerName);
     }
 
     void simulateRace() {
