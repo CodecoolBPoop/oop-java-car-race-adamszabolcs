@@ -5,7 +5,7 @@ import java.util.Random;
 public class Car {
 
     private static final int carNameLength = 2;
-    private static final int rainingSpeed = 75;
+    private static final int brokenTruckSpeed = 75;
     public static final String[] carNames = {"Eon", "Crest", "Patron", "Blast", "Zeal", "Temper", "Crux", "Dynamics",
                                             "Flow", "Ivory", "Fragment", "Tradition", "Viper", "Universe", "Escape",
                                             "Magic", "Flux", "Blizzard"};
@@ -36,8 +36,8 @@ public class Car {
         /** Create speed when new Car() created.
          *  Random speed between 80-110 km/h
          *  Check if raining, if true, set normal speed to rainingSpeed (75 km/h).*/
-        if (Weather.raining) {
-            setNormalSpeed(rainingSpeed);
+        if (Race.brokenTruck) {
+            setNormalSpeed(brokenTruckSpeed);
         } else {
             Random randomSpeed = new Random();
             setNormalSpeed((randomSpeed.nextInt(30) + 1) + 80);
