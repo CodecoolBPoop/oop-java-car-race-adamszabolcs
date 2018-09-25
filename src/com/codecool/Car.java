@@ -1,7 +1,5 @@
 package com.codecool;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Car {
@@ -26,11 +24,8 @@ public class Car {
     }
 
     void makeDistance(int normalSpeed) {
+        /** Add the actual normalSpeed to the distanceTraveled. */
         distanceTraveled += normalSpeed;
-    }
-
-    void addDistanceTraveled() {
-        makeDistance(normalSpeed);
     }
 
     int getDistanceTraveled() {
@@ -38,7 +33,10 @@ public class Car {
     }
 
     void createNormalSpeed() {
-        if (Weather.isRaining) {
+        /** Create speed when new Car() created.
+         *  Random speed between 80-110 km/h
+         *  Check if raining, if true, set normal speed to rainingSpeed (75 km/h).*/
+        if (Weather.raining) {
             setNormalSpeed(rainingSpeed);
         } else {
             Random randomSpeed = new Random();
@@ -51,7 +49,6 @@ public class Car {
     }
 
     int getNormalSpeed() {
-        createNormalSpeed();
         return normalSpeed;
     }
 
@@ -64,19 +61,14 @@ public class Car {
     }
 
     void createName() {
+        /** Create name when new Car() created.
+         *  get two random names from carNames list */
         randomName = "";
         for (int j = 0; j < carNameLength; j++) {
             Random carNameIndex = new Random();
             randomName += carNames[carNameIndex.nextInt(carNames.length - 1)] + " ";
         }
         setName(randomName);
-    }
-
-    String getNameByDistance(int distanceTraveled) {
-        if (distanceTraveled == this.distanceTraveled) {
-            return name;
-        }
-        return "";
     }
 
     void moveForAnHour(Race race) {
