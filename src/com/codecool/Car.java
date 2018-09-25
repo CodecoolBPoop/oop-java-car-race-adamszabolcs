@@ -36,7 +36,7 @@ public class Car {
         /** Create speed when new Car() created.
          *  Random speed between 80-110 km/h
          *  Check if raining, if true, set normal speed to rainingSpeed (75 km/h).*/
-        if (Race.brokenTruck) {
+        if (Race.isThereABrokenTruck()) {
             setNormalSpeed(brokenTruckSpeed);
         } else {
             Random randomSpeed = new Random();
