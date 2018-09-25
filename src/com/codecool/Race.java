@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Race {
 
+    private Race race;
+
     private int fullRace = 50;
 
     private List<Truck> trucks = new ArrayList<>();
@@ -15,9 +17,11 @@ public class Race {
 
     public static final int racerNumber = 10;
 
-    public boolean brokenTruck = false;
+    public static boolean brokenTruck = false;
 
     public Race() {
+        createVehicles();
+        simulateRace();
     }
 
     void createVehicles() {
@@ -36,13 +40,13 @@ public class Race {
         for (int i = 0; i < fullRace; i++) {
             Weather.setRaining();
             for (Car car: cars) {
-                System.out.println(car.getName());
+                car.moveForAnHour(race);
             }
             for (Truck truck : trucks) {
-                System.out.println(truck.getName());
+                truck.moveForAnHour(race);
             }
             for (Motorcycle motor : motorcycles) {
-                System.out.println(motor.getName());
+                motor.moveForAnHour(race);
             }
         }
         printRaceResults();
@@ -65,25 +69,30 @@ public class Race {
                 winnerName = motor.getName();
             }
         }
-        System.out.println("Motor winner " + winnerName + "made " + maxDistance + "km distance on the race.");
+        System.out.println("Motor winner " + winnerName + " made " + maxDistance + "km distance on the race.");
         maxDistance = 0;
-/*
+        int winnerTruck = 0;
         for (Truck truck : trucks) {
             if (truck.getDistanceTraveled() > maxDistance) {
                 maxDistance = truck.getDistanceTraveled();
-                winnerName = truck.getName();
+                winnerTruck = truck.getName();
             }
         }
-*/
-        System.out.println("Truck winner " + winnerName + "made " + maxDistance + "km distance on the race.");
+        System.out.println("Truck winner " + winnerTruck + " made " + maxDistance + "km distance on the race.");
     }
 
-    public static boolean isThereABrokenTruck() {
-        return false;
+    boolean isThereABrokenTruck() {
+        for (Truck truck : trucks) {
+            truck.isBroken();
+            if (truck.getBreakDownTurnsLeft() > 0) {
+                brokenTruck = true;
+                return brokenTruck;
+            }
+        }
+        return brokenTruck;
     }
 
     public static void main(String[] args) {
 	    Race race = new Race();
-	    race.simulateRace();
     }
 }
