@@ -35,8 +35,8 @@ public class Car {
     void createNormalSpeed() {
         /** Create speed when new Car() created.
          *  Random speed between 80-110 km/h
-         *  Check if raining, if true, set normal speed to rainingSpeed (75 km/h).*/
-        if (Race.isThereABrokenTruck()) {
+         *  Check if there is a broken truck, if true, set normal speed to rainingSpeed (75 km/h).*/
+        if (Race.brokenTruck) {
             setNormalSpeed(brokenTruckSpeed);
         } else {
             Random randomSpeed = new Random();
@@ -72,6 +72,7 @@ public class Car {
     }
 
     void moveForAnHour(Race race) {
-
+        createNormalSpeed();
+        makeDistance(getNormalSpeed());
     }
 }
