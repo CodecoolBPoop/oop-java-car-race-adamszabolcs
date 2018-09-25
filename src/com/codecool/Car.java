@@ -29,6 +29,10 @@ public class Car {
         distanceTraveled += normalSpeed;
     }
 
+    void addDistanceTraveled() {
+        makeDistance(normalSpeed);
+    }
+
     int getDistanceTraveled() {
         return distanceTraveled;
     }
@@ -66,6 +70,13 @@ public class Car {
             randomName += carNames[carNameIndex.nextInt(carNames.length - 1)] + " ";
         }
         setName(randomName);
+    }
+
+    String getNameByDistance(int distanceTraveled) {
+        if (distanceTraveled == this.distanceTraveled) {
+            return name;
+        }
+        return "";
     }
 
     void moveForAnHour(Race race) {
