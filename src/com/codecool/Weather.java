@@ -4,17 +4,23 @@ import java.util.Random;
 
 public class Weather {
 
-    public static boolean isRaining;
+    public static boolean raining;
 
-    public static boolean checkIfRaining() {
+    private static int rainingNumber;
+
+    static void setRaining() {
         Random randomWeather = new Random();
-        int rainingNumber = randomWeather.nextInt(10) + 1;
+        rainingNumber = randomWeather.nextInt(10) + 1;
+        isRaining();
+    }
+
+    static boolean isRaining() {
         if (rainingNumber > 3) {
-            isRaining = true;
+            raining = true;
         } else {
-            isRaining = false;
+            raining = false;
         }
-        return isRaining;
+        return raining;
     }
 
 }
