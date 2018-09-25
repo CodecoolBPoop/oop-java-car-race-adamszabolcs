@@ -43,7 +43,6 @@ public class Motorcycle {
     }
 
     static String nameNumber;
-    int distanceTraveled;
     void moveForAnHour(Race race) {
 
     }
