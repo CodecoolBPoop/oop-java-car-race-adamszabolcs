@@ -6,7 +6,7 @@ public class Truck {
     int breakDownTurnsLeft;
     int distanceTraveled;
 
-    void moveForAnHour() {
+    void moveForAnHour(Race race) {
 
     }
 }
