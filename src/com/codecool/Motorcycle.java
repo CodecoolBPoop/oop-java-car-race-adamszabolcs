@@ -44,6 +44,7 @@ public class Motorcycle {
 
     static String nameNumber;
     void moveForAnHour(Race race) {
-
+        createSpeed();
+        makeDistance(speed);
     }
 }
