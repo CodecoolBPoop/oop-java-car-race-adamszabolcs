@@ -7,7 +7,7 @@ public class Car {
         int distanceTraveled;
     }
 
-    void moveForAnHour() {
+    void moveForAnHour(Race race) {
 
     }
 }
