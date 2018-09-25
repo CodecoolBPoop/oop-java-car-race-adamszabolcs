@@ -26,6 +26,18 @@ public class Truck {
         }
     }
 
+    int getDistanceTraveled() {
+       return distanceTraveled;
+    }
+
+    void setDistanceTraveled(int distanceTraveled) {
+        this.distanceTraveled = distanceTraveled;
+    }
+
+    void makeDistance(int speed) {
+        distanceTraveled += speed;
+    }
+
     int getSpeed() {
         return speed;
     }
@@ -34,12 +46,19 @@ public class Truck {
         this.breakDownTurnsLeft = breakDownTurnsLeft;
     }
 
+    int getBreakDownTurnsLeft() {
+        return breakDownTurnsLeft;
+    }
+
     boolean isBroken() {
-        Random chance = new Random();
-        int chanceForBreak = chance.nextInt(20) + 1;
-        if (chanceForBreak == 1) {
-            setBreakDownTurnsLeft(2);
-            return true;
+        if (breakDownTurnsLeft == 0) {
+            Random chance = new Random();
+            int chanceForBreak = chance.nextInt(20) + 1;
+            if (chanceForBreak == 1) {
+                setSpeed(0);
+                setBreakDownTurnsLeft(2);
+                return true;
+            }
         }
         return false;
     }
@@ -57,7 +76,23 @@ public class Truck {
         this.name = name;
     }
 
-    void moveForAnHour(Race race) {
+    void oneHourPass() {
+        breakDownTurnsLeft -= 1;
+    }
 
+    void moveForAnHour(Race race) {
+        if (breakDownTurnsLeft != 0) {
+            if (breakDownTurnsLeft == 1) {
+                changeSpeed();
+                oneHourPass();
+            } else {
+                changeSpeed();
+                oneHourPass();
+            }
+        } else {
+            isBroken();
+            setSpeed(speed);
+            makeDistance(getSpeed());
+        }
     }
 }
