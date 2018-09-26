@@ -38,11 +38,10 @@ public class Motorcycle {
             Random rainingSlow = new Random();
             setSpeed(rainingSlow.nextInt(45) + 51);
         } else {
-            setSpeed(speed);
+            setSpeed(100);
         }
     }
 
-    static String nameNumber;
     void moveForAnHour(Race race) {
         createSpeed();
         makeDistance(speed);
