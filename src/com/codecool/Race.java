@@ -36,17 +36,17 @@ public class Race {
     }
 
     void simulateRace() {
-        createVehicles();
         for (int i = 0; i < fullRace; i++) {
             Weather.setRaining();
-            for (Car car: cars) {
-                car.moveForAnHour(race);
-            }
             for (Truck truck : trucks) {
                 truck.moveForAnHour(race);
             }
+            isThereABrokenTruck();
             for (Motorcycle motor : motorcycles) {
                 motor.moveForAnHour(race);
+            }
+            for (Car car: cars) {
+                car.moveForAnHour(race);
             }
         }
         printRaceResults();
@@ -83,12 +83,12 @@ public class Race {
 
     boolean isThereABrokenTruck() {
         for (Truck truck : trucks) {
-            truck.isBroken();
-            if (truck.getBreakDownTurnsLeft() > 0) {
+            if (truck.getBreakDownTurnsLeft() != 0) {
                 brokenTruck = true;
                 return brokenTruck;
             }
         }
+        brokenTruck = false;
         return brokenTruck;
     }
 
