@@ -3,7 +3,7 @@ package com.codecool;
 import java.util.Random;
 
 public class Truck {
-    private int speed = 100;
+    private static int speed = 100;
     private int name;
     private int breakDownTurnsLeft;
     private int distanceTraveled = 0;
@@ -28,10 +28,6 @@ public class Truck {
 
     int getDistanceTraveled() {
        return distanceTraveled;
-    }
-
-    void setDistanceTraveled(int distanceTraveled) {
-        this.distanceTraveled = distanceTraveled;
     }
 
     void makeDistance(int speed) {
@@ -82,16 +78,11 @@ public class Truck {
 
     void moveForAnHour(Race race) {
         if (breakDownTurnsLeft != 0) {
-            if (breakDownTurnsLeft == 1) {
-                changeSpeed();
-                oneHourPass();
-            } else {
-                changeSpeed();
-                oneHourPass();
-            }
+            changeSpeed();
+            oneHourPass();
         } else {
             isBroken();
-            setSpeed(speed);
+            setSpeed(100);
             makeDistance(getSpeed());
         }
     }
